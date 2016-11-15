@@ -25,43 +25,73 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Switch
+                android:text="Cliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mySwitch"
+                android:textSize="20sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="CPF:"
-                android:id="@+id/textCPF"/>
+                android:text="LOGIN:"
+                android:id="@+id/textLogin"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText1"
-                android:layout_below="@+id/textCPF" />
+                android:id="@+id/editTextLogin" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="SENHA:"
+                android:id="@+id/textPassword"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextPassword"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="NOME:"
+                android:id="@+id/textView1"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="CNH:"
-                android:id="@+id/textCNH"
+                android:text="ENDEREÇO:"
+                android:id="@+id/textView2"
                 android:layout_below="@+id/editText"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2"
-                android:layout_below="@+id/textCNH"/>
+                android:id="@+id/editText2"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Nome:"
-                android:id="@+id/textNome"/>
+                android:visibility="invisible"
+                android:id="@+id/textView3"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:id="@+id/editText3"/>
 
             <TextView
@@ -69,11 +99,13 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Data Admissão:"
-                android:id="@+id/textEnd"/>
+                android:visibility="invisible"
+                android:id="@+id/textView4"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:id="@+id/editText4"/>
 
             <Button
@@ -86,5 +118,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

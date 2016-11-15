@@ -40,41 +40,61 @@ public class MainActivity extends AppCompatActivity {
     public void onClickLogin(View v){
 
         Log.e("selectLogin", "antes");
-        Cursor res = crud.selectLogin(/*editLogin.getText().toString()*/);
+        Boolean signal = false;
+        Cursor motorista = crud.selectLogin("motorista");
+        Cursor cliente = crud.selectLogin("");
 
         Log.e("selectLogin", "passei");
 
-        if(res.getCount() == 0){
+        if((motorista.getCount() == 0) && cliente.getCount() == 0){
             //show message
             showMessage("Erro", "nothing found");
             return;
         }
-        //StringBuffer buffer = new StringBuffer();
-
         String login = editLogin.getText().toString();
         String password = editPassword.getText().toString();
         Log.e("EditText: ", login);
         Log.e("EditText: ", password);
 
-        while (res.moveToNext()){
-            String s1 = res.getString(1);
-            String s2 = res.getString(2);
+        while (motorista.moveToNext()){
+            String s1 = motorista.getString(0);
+            String s2 = motorista.getString(1);
             Log.e("Login: ", s1);
             Log.e("Senha: ", s2);
             if((login.equals(s1)) && (password.equals(s2))){
                 showMessage("Login ", "realizado");
                 return;
             }
-            if(res.isLast()){
-                showMessage("Login/Senha incorretos ", "");
+            if((motorista.isLast())){
+                signal = true;
+                /*showMessage("Login/Senha incorretos ", "");
                 editLogin.getText().clear();
-                editPassword.getText().clear();
+                editPassword.getText().clear();*/
+                continue;
             }
-//            buffer.append("ID :" + res.getString(0)+ "\n");
-//            buffer.append("CPF :" + res.getString(1)+ "\n");
-//            buffer.append("DATA :" + res.getString(2)+ "\n");
         }
+        Log.e("Signal", signal.toString());
+        if(signal){
+            Log.e("Crud", "cliente");
 
+            Log.e("Crud", "cliente");
+            while (cliente.moveToNext()){
+                String s1 = cliente.getString(0);
+                String s2 = cliente.getString(1);
+                Log.e("Login: ", s1);
+                Log.e("Senha: ", s2);
+                if((login.equals(s1)) && (password.equals(s2))){
+                    showMessage("Login ", "realizado");
+                    return;
+                }
+                if((cliente.isLast())){
+                    showMessage("Login/Senha incorretos ", "");
+                    editLogin.getText().clear();
+                    editPassword.getText().clear();
+                    return;
+                }
+            }
+        }
     }
     public void showMessage(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -33,6 +33,8 @@ public class BancoClass extends SQLiteOpenHelper {
 
     //Colunas comuns
     protected static final String ID = "_id";
+    protected static final String LOGIN = "login";
+    protected static final String PASSWORD = "password";
     protected static final String DATA = "data";
     protected static final String NOME = "nome";
     protected static final String ENDERECO = "endereco";
@@ -110,16 +112,29 @@ public class BancoClass extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.e("onCreate", "Inicio");
+        //Criando Tabela Usuario
+        db.execSQL("CREATE TABLE " +
+                TABELA_USUARIO + "(" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                LOGIN + " TEXT NOT NULL," +
+                PASSWORD + " TEXT NOT NULL," +
+                NOME + " TEXT NOT NULL," +
+                ENDERECO + " TEXT NOT NULL)"
+        );
+        Log.e("sqlUsuario", "Tabela Usuario criada");
         //Criando Tabela Motorista
         db.execSQL("CREATE TABLE " +
                 TABELA_MOTORISTA + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                LOGIN + " TEXT NOT NULL," +
+                PASSWORD + " TEXT NOT NULL," +
                 CPF + " TEXT NOT NULL," +
                 CNH + " TEXT NOT NULL," +
                 NOME + " TEXT NOT NULL," +
                 DATA_ADMIN + " TEXT NOT NULL)"
         );
         Log.e("sqlMotorista", "Tabela Motorista criada");
+        /*//Criando Tabela Carro
         db.execSQL("CREATE TABLE " +
                 TABELA_CARROS + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -129,27 +144,34 @@ public class BancoClass extends SQLiteOpenHelper {
                 M_CPF + " TEXT NOT NULL," +
                 "FOREIGN KEY ("+M_CPF+") REFERENCES "+TABELA_MOTORISTA+" ("+CPF+"))"
         );
-        Log.e("sqlCarro", "Tabela Carro criada");
+        Log.e("sqlCarro", "Tabela Carro criada");*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_MOTORISTA);
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_CARROS);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABELA_CARROS);
     }
 
-    public String insertMotorista(String cpf, String cnh, String nome,String data_adm){
+    public String insertMotorista(String login, String password, String cpf, String cnh, String nome,String data_adm){
+
+        db = this.getWritableDatabase();
+
         Log.e("insertMotorista", "Inicio");
         ContentValues valores;
         long resultado;
 
         valores = new ContentValues();
+        valores.put(LOGIN, login);
+        valores.put(PASSWORD, password);
         valores.put(CPF, cpf);
         valores.put(CNH, cnh);
         valores.put(NOME, nome);
         valores.put(DATA_ADMIN, data_adm);
         Log.e("insertMotorista", "Insert");
         resultado = db.insert(TABELA_MOTORISTA, null, valores);
+
         db.close();
 
         if (resultado == -1){
@@ -159,36 +181,52 @@ public class BancoClass extends SQLiteOpenHelper {
             return "Registro Inserido com sucesso";
         }
     }
-    public Cursor selectLogin(/*String login*//*, *//*String password*/){
+    /*public String insertUsuario(String login, String password, String nome, String endereco){
+        Log.e("insertUsuario", "Inicio");
+        ContentValues valores;
+        long resultado;
+
+        valores = new ContentValues();
+        valores.put(LOGIN, login);
+        valores.put(PASSWORD, password);
+        valores.put(NOME, nome);
+        valores.put(ENDERECO, endereco);
+        Log.e("insertUsuario", "Insert");
+        resultado = db.insert(TABELA_USUARIO, null, valores);
+        db.close();
+
+        if (resultado == -1){
+            return "Erro ao inserir registro";
+        }
+        else{
+            return "Registro Inserido com sucesso";
+        }
+    }*/
+    public Cursor selectLogin(String type){
 
         Cursor cursor;
-        String[] campos =  {ID, CPF, DATA_ADMIN};
-        db = getReadableDatabase();
-        cursor = db.query(TABELA_MOTORISTA, campos, null, null, null, null,null,null);
+        if(type == "motorista"){
+            String[] campos =  {LOGIN, PASSWORD};
+            db = getReadableDatabase();
+            cursor = db.query(TABELA_MOTORISTA, campos, null, null, null, null,null,null);
 
-        if(cursor!=null){
-            cursor.moveToFirst();
+            if(cursor!=null){
+                cursor.moveToFirst();
+            }
+            db.close();
         }
-        db.close();
-        return cursor;
-//        Cursor log = db.rawQuery("SELECT cpf FROM motorista WHERE cpf = '"+login+"'", null);
-        //Cursor log = db.rawQuery("SELECT * FROM " + TABELA_MOTORISTA, null);
-        //Cursor pass = db.rawQuery("SELECT cpf FROM motorista WHERE data_adm = '"+password+"'", null);
+        else{
+            String[] campos =  {LOGIN, PASSWORD};
+            db = getReadableDatabase();
+            cursor = db.query(TABELA_USUARIO, campos, null, null, null, null,null,null);
 
-        //return log;
+            if(cursor!=null){
+                cursor.moveToFirst();
+            }
+            db.close();
+        }
+
+        return cursor;
     }
 }
 
-
-//Criando Tabela Carro
-//        String sqlCarro = "CREATE TABLE "+TABELA_CARROS+" ("
-//                + ID + "integer primary key autoincrement, "
-//                + PLACA + " text NOT NULL, "
-//                + MARCA + " text NOT NULL, "
-//                + ANO + " text NOT NULL, "
-//                + CONSUMO + " text NOT NULL, "
-//                + HORARIO + " text NOT NULL, "
-//                + M_CPF + " text NOT NULL,"
-//                + " FOREIGN KEY ("+M_CPF+") REFERENCES " +TABELA_MOTORISTA+" ("+CPF+")"
-//                + ")";
-//        db.execSQL(sqlCarro);
