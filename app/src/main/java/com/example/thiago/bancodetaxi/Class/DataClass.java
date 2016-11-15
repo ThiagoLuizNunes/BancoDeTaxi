@@ -220,9 +220,10 @@ public class DataClass extends SQLiteOpenHelper {
     public Cursor selectLogin(String type){
         Cursor cursor;
         if(type == "motorista"){
-            String[] campos =  {LOGIN, PASSWORD};
+            String[] campos =  {LOGIN, PASSWORD, CPF, CNH, NOME, DATA};
             db = getReadableDatabase();
-            cursor = db.query(TABELA_MOTORISTA, campos, null, null, null, null,null,null);
+            //cursor = db.query(TABELA_MOTORISTA, campos, null, null, null, null,null,null);
+            cursor = db.rawQuery("SELECT * FROM "+TABELA_MOTORISTA+" ", null);
 
             if(cursor!=null){
                 cursor.moveToFirst();
@@ -232,7 +233,8 @@ public class DataClass extends SQLiteOpenHelper {
         else{
             String[] campos =  {LOGIN, PASSWORD};
             db = getReadableDatabase();
-            cursor = db.query(TABELA_USUARIO, campos, null, null, null, null,null,null);
+            //cursor = db.query(TABELA_USUARIO, campos, null, null, null, null,null,null);
+            cursor = db.rawQuery("SELECT * FROM "+TABELA_USUARIO+" ", null);
 
             if(cursor!=null){
                 cursor.moveToFirst();

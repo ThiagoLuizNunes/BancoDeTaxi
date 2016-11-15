@@ -16,6 +16,9 @@ import com.example.thiago.bancodetaxi.Class.DataClass;
 import com.example.thiago.bancodetaxi.ClientActivity;
 import com.example.thiago.bancodetaxi.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     public static DataClass crud;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("selectLogin", "antes");
         Boolean signal = false;
+        ArrayList<String> list;
         Cursor motorista = crud.selectLogin("motorista");
         Cursor cliente = crud.selectLogin("");
         Context context = getApplicationContext();
@@ -61,14 +65,34 @@ public class MainActivity extends AppCompatActivity {
         Log.e("EditText: ", password);
 
         while (motorista.moveToNext()){
-            String s1 = motorista.getString(0);
-            String s2 = motorista.getString(1);
-            Log.e("Login: ", s1);
-            Log.e("Senha: ", s2);
+            String s1 = motorista.getString(1);
+            String s2 = motorista.getString(2);
+            //Log.e("Login: ", s1);
+            //Log.e("Senha: ", s2);
             if((login.equals(s1)) && (password.equals(s2))){
                 //showMessage("Login ", "realizado");
+                list = new ArrayList<>();
+                /*int i;
+                for (i = 0; i<=motorista.getCount()+1; i++){
+                    list.add(motorista.getString(i+1));
+                    Log.e("Motorista"+i, list.get(i));
+                }*/
+                list.add(motorista.getString(1));
+                Log.e("Login: ", list.get(0));
+                list.add(motorista.getString(2));
+                Log.e("Senha: ", list.get(1));
+                list.add(motorista.getString(3));
+                Log.e("CPF: ", list.get(2));
+                list.add(motorista.getString(4));
+                Log.e("CNH: ", list.get(3));
+                list.add(motorista.getString(5));
+                Log.e("Nome: ", list.get(4));
+                list.add(motorista.getString(6));
+                Log.e("Data: ", list.get(5));
+
                 Toast toast = Toast.makeText(context, "Login realizado", duration);
                 toast.show();
+
                 Intent intent = new Intent(this, DriverActivity.class);
                 startActivity(intent);
                 return;
@@ -81,15 +105,25 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Signal", signal.toString());
         if(signal && (cliente.getCount() != 0)){
             Log.e("Crud", "cliente");
-
-            Log.e("Crud", "cliente");
             while (cliente.moveToNext()){
-                String s1 = cliente.getString(0);
-                String s2 = cliente.getString(1);
-                Log.e("Login: ", s1);
-                Log.e("Senha: ", s2);
+                String s1 = cliente.getString(1);
+                String s2 = cliente.getString(2);
+                //Log.e("Login: ", s1);
+                //Log.e("Senha: ", s2);
                 if((login.equals(s1)) && (password.equals(s2))){
                     //showMessage("Login ", "realizado");
+
+                    list = new ArrayList<>();
+                    int i;
+                    list.add(cliente.getString(1));
+                    Log.e("Login: ", list.get(0));
+                    list.add(cliente.getString(2));
+                    Log.e("Login: ", list.get(1));
+                    list.add(cliente.getString(3));
+                    Log.e("Login: ", list.get(2));
+                    list.add(cliente.getString(4));
+                    Log.e("Login: ", list.get(3));
+
                     Toast toast = Toast.makeText(context, "Login realizado", duration);
                     toast.show();
                     Intent intent = new Intent(this, ClientActivity.class);
