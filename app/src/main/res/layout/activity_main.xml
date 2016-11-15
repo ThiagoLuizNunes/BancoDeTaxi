@@ -100,7 +100,7 @@
                 android:textSize="15dp"
                 android:textStyle="italic"
                 android:textAllCaps="false"
-                android:text="Não tem conta? Clique aqui e cadastre-se!"
+                android:text="Não possui conta? Clique aqui e cadastre-se!"
                 android:layout_gravity="center"
                 android:onClick="onClickRegister"
                 />
