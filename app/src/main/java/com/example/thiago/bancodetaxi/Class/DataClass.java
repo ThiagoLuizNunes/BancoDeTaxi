@@ -217,6 +217,30 @@ public class DataClass extends SQLiteOpenHelper {
         }
     }
 
+    public String insertCarro(String placa, String marca, String ano, String m_cpf){
+        db = this.getWritableDatabase();
+
+        Log.e("insertCarro", "Inicio");
+        ContentValues valores;
+        long resultado;
+
+        valores = new ContentValues();
+        valores.put(PLACA, placa);
+        valores.put(MARCA, marca);
+        valores.put(ANO, ano);
+        valores.put(M_CPF, m_cpf);
+        Log.e("insertCarro", "Insert");
+        resultado = db.insert(TABELA_CARROS, null, valores);
+        db.close();
+
+        if (resultado == -1){
+            return "Erro ao inserir registro";
+        }
+        else{
+            return "Carro Inserido com sucesso";
+        }
+    }
+
     public Cursor selectLogin(String type){
         Cursor cursor;
         if(type == "motorista"){

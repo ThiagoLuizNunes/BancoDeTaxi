@@ -1,8 +1,10 @@
 package com.example.thiago.bancodetaxi.Activitys;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.thiago.bancodetaxi.R;
@@ -30,5 +32,11 @@ public class DriverActivity extends AppCompatActivity {
         textView2.setText("CPF: "+listDriver.get(2));
         textView3.setText("CNH: "+listDriver.get(3));
         textView4.setText("DATA: "+listDriver.get(5));
+    }
+
+    public void onClickAddCarro(View v){
+        Intent intent = new Intent(getApplicationContext(), CarActivity.class);
+        intent.putExtra("CPF", listDriver.get(2));
+        startActivity(intent);
     }
 }

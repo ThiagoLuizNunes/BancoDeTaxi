@@ -9,7 +9,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="0dp"
     android:background="@drawable/background"
     tools:context="com.example.thiago.bancodetaxi.Activitys.MainActivity">
 
@@ -40,6 +39,7 @@
 
                 <TextView
                     android:text="Meus Dados"
+                    android:textColor="#FFFFFF"
                     android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,7 +114,8 @@
                     android:background="@drawable/mybutton"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:text="add carro"/>
+                    android:text="add carro"
+                    android:onClick="onClickAddCarro"/>
                 <Button
                     android:layout_marginTop="50dp"
                     style="?android:textAppearanceSmall"
