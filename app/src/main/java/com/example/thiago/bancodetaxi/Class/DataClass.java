@@ -15,7 +15,7 @@ import android.util.Log;
  * Created by Thiago on 11/11/2016.
  */
 
-public class BancoClass extends SQLiteOpenHelper {
+public class DataClass extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
     //Nome do Banco de Dados
@@ -103,7 +103,7 @@ public class BancoClass extends SQLiteOpenHelper {
     protected static final String FONE = "fone";
 
 
-    public BancoClass(Context context){
+    public DataClass(Context context){
 
         super(context, NOME_BANCO,null,VERSAO);
         db = this.getWritableDatabase();
@@ -122,6 +122,7 @@ public class BancoClass extends SQLiteOpenHelper {
                 ENDERECO + " TEXT NOT NULL)"
         );
         Log.e("sqlUsuario", "Tabela Usuario criada");
+
         //Criando Tabela Motorista
         db.execSQL("CREATE TABLE " +
                 TABELA_MOTORISTA + "(" +
@@ -134,7 +135,8 @@ public class BancoClass extends SQLiteOpenHelper {
                 DATA_ADMIN + " TEXT NOT NULL)"
         );
         Log.e("sqlMotorista", "Tabela Motorista criada");
-        /*//Criando Tabela Carro
+
+        //Criando Tabela Carro
         db.execSQL("CREATE TABLE " +
                 TABELA_CARROS + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -144,18 +146,28 @@ public class BancoClass extends SQLiteOpenHelper {
                 M_CPF + " TEXT NOT NULL," +
                 "FOREIGN KEY ("+M_CPF+") REFERENCES "+TABELA_MOTORISTA+" ("+CPF+"))"
         );
-        Log.e("sqlCarro", "Tabela Carro criada");*/
+        Log.e("sqlCarro", "Tabela Carro criada");
+
+        db.execSQL("CREATE TABLE " +
+                TABELA_CHAMADA + "(" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                ORIGEM + " TEXT NOT NULL," +
+                H_CHAMADA + " TEXT NOT NULL," +
+                H_CHEGADA + " TEXT NOT NULL," +
+                U_ID + " TEXT NOT NULL," +
+                "FOREIGN KEY ("+U_ID+") REFERENCES "+TABELA_USUARIO+" ("+ID+"))"
+        );
+        Log.e("sqlChamada", "Tabela Chamada criada");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_MOTORISTA);
-        //db.execSQL("DROP TABLE IF EXISTS " + TABELA_CARROS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_CARROS);
     }
 
     public String insertMotorista(String login, String password, String cpf, String cnh, String nome,String data_adm){
-
         db = this.getWritableDatabase();
 
         Log.e("insertMotorista", "Inicio");
@@ -183,6 +195,7 @@ public class BancoClass extends SQLiteOpenHelper {
     }
     public String insertUsuario(String login, String password, String nome, String endereco){
         db = this.getWritableDatabase();
+
         Log.e("insertUsuario", "Inicio");
         ContentValues valores;
         long resultado;
@@ -205,7 +218,6 @@ public class BancoClass extends SQLiteOpenHelper {
     }
 
     public Cursor selectLogin(String type){
-
         Cursor cursor;
         if(type == "motorista"){
             String[] campos =  {LOGIN, PASSWORD};
@@ -227,7 +239,6 @@ public class BancoClass extends SQLiteOpenHelper {
             }
             db.close();
         }
-
         return cursor;
     }
 }

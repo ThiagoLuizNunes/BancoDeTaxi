@@ -75,7 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
     public void onClickConfirm(View v){
 
@@ -96,7 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
                 toast.show();
             }
             else {
-                //CharSequence text = "Erro ao inserir registro";
                 Toast toast = Toast.makeText(context, conditon, duration);
                 toast.show();
             }
@@ -120,7 +118,6 @@ public class RegisterActivity extends AppCompatActivity {
                 toast.show();
             }
             else {
-                //CharSequence text = "Erro ao inserir registro";
                 Toast toast = Toast.makeText(context, conditon, duration);
                 toast.show();
             }

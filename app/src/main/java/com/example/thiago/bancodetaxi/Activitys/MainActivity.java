@@ -12,13 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.thiago.bancodetaxi.Class.BancoClass;
-import com.example.thiago.bancodetaxi.Class.BancoController;
+import com.example.thiago.bancodetaxi.Class.DataClass;
+import com.example.thiago.bancodetaxi.ClientActivity;
 import com.example.thiago.bancodetaxi.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static BancoClass crud;
+    public static DataClass crud;
     private Button buttonRegister;
     private Button buttonLogin;
     private EditText editLogin, editPassword;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         editLogin = (EditText) findViewById(R.id.editLogin);
         editPassword = (EditText) findViewById(R.id.editPassword);
 
-        crud = new BancoClass(this);
+        crud = new DataClass(this);
 
     }
 
@@ -43,12 +43,16 @@ public class MainActivity extends AppCompatActivity {
         Boolean signal = false;
         Cursor motorista = crud.selectLogin("motorista");
         Cursor cliente = crud.selectLogin("");
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
 
         Log.e("selectLogin", "passei");
 
         if((motorista.getCount() == 0) && cliente.getCount() == 0){
             //show message
-            showMessage("Erro", "nothing found");
+            //showMessage("Erro", "nothing found");
+            Toast toast = Toast.makeText(context, "Erro, nothing found", duration);
+            toast.show();
             return;
         }
         String login = editLogin.getText().toString();
@@ -62,14 +66,15 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Login: ", s1);
             Log.e("Senha: ", s2);
             if((login.equals(s1)) && (password.equals(s2))){
-                showMessage("Login ", "realizado");
+                //showMessage("Login ", "realizado");
+                Toast toast = Toast.makeText(context, "Login realizado", duration);
+                toast.show();
+                Intent intent = new Intent(this, DriverActivity.class);
+                startActivity(intent);
                 return;
             }
             if((motorista.isLast())){
                 signal = true;
-                /*showMessage("Login/Senha incorretos ", "");
-                editLogin.getText().clear();
-                editPassword.getText().clear();*/
                 continue;
             }
         }
@@ -84,11 +89,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Login: ", s1);
                 Log.e("Senha: ", s2);
                 if((login.equals(s1)) && (password.equals(s2))){
-                    showMessage("Login ", "realizado");
+                    //showMessage("Login ", "realizado");
+                    Toast toast = Toast.makeText(context, "Login realizado", duration);
+                    toast.show();
+                    Intent intent = new Intent(this, ClientActivity.class);
+                    startActivity(intent);
                     return;
                 }
                 if((cliente.isLast())){
-                    showMessage("Login/Senha incorretos ", "");
+                    //showMessage("Login/Senha incorretos ", "");
+                    Toast toast = Toast.makeText(context, "Login/Senha incorretos", duration);
+                    toast.show();
                     editLogin.getText().clear();
                     editPassword.getText().clear();
                     return;
@@ -96,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else{
-            showMessage("Login/Senha incorretos ", "");
+            //showMessage("Login/Senha incorretos ", "");
+            Toast toast = Toast.makeText(context, "Login/Senha incorretos", duration);
+            toast.show();
             editLogin.getText().clear();
             editPassword.getText().clear();
         }
