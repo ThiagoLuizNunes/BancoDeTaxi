@@ -1,7 +1,9 @@
-package com.example.thiago.bancodetaxi;
+package com.example.thiago.bancodetaxi.Activitys;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.thiago.bancodetaxi.R;
 
 public class ClientActivity extends AppCompatActivity {
 

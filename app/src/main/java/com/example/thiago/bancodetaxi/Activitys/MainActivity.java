@@ -13,11 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.thiago.bancodetaxi.Class.DataClass;
-import com.example.thiago.bancodetaxi.ClientActivity;
 import com.example.thiago.bancodetaxi.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -93,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, "Login realizado", duration);
                 toast.show();
 
-                Intent intent = new Intent(this, DriverActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DriverActivity.class);
+                intent.putExtra("listDriver", list);
                 startActivity(intent);
                 return;
             }
@@ -127,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, "Login realizado", duration);
                     toast.show();
                     Intent intent = new Intent(this, ClientActivity.class);
+                    intent.putExtra("dadosCliente", list);
                     startActivity(intent);
                     return;
                 }
