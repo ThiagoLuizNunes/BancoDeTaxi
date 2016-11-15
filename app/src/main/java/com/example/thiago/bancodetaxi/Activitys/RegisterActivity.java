@@ -78,9 +78,31 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     public void onClickConfirm(View v){
-        String tipo = mySwitch.getText().toString().toLowerCase();
-        //if (tipo == "motorista"){
 
+        if (mySwitch.isChecked()){
+
+            String login = editTextLogin.getText().toString();
+            String password = editTextPassword.getText().toString();
+            String nome = editText1.getText().toString();
+            String endereco = editText2.getText().toString();
+
+            String conditon = MainActivity.crud.insertUsuario(login, password, nome, endereco);
+
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+
+            if (conditon == "Usuário Inserido com sucesso"){
+                Toast toast = Toast.makeText(context, conditon, duration);
+                toast.show();
+            }
+            else {
+                //CharSequence text = "Erro ao inserir registro";
+                Toast toast = Toast.makeText(context, conditon, duration);
+                toast.show();
+            }
+            finish();
+        }
+        else {
             String login = editTextLogin.getText().toString();
             String password = editTextPassword.getText().toString();
             String cpf = editText1.getText().toString();
@@ -93,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
             Context context = getApplicationContext();
             int duration = Toast.LENGTH_SHORT;
 
-            if (conditon == "Registro Inserido com sucesso"){
+            if (conditon == "Motorista Inserido com sucesso"){
                 Toast toast = Toast.makeText(context, conditon, duration);
                 toast.show();
             }
@@ -103,28 +125,6 @@ public class RegisterActivity extends AppCompatActivity {
                 toast.show();
             }
             finish();
-        //}
-        //else {
-            /*String login = editTextLogin.getText().toString();
-            String password = editTextPassword.getText().toString();
-            String nome = editText1.getText().toString();
-            String endereco = editText2.getText().toString();
-
-            String conditon = MainActivity.crud.insertUsuario(login, password, nome, endereco);
-
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-
-            if (conditon == "Registro Inserido com sucesso"){
-                Toast toast = Toast.makeText(context, conditon, duration);
-                toast.show();
-            }
-            else {
-                //CharSequence text = "Erro ao inserir registro";
-                Toast toast = Toast.makeText(context, conditon, duration);
-                toast.show();
-            }
-            finish();*/
-        //}
+        }
     }
 }

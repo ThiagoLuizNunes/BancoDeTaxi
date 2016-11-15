@@ -178,10 +178,11 @@ public class BancoClass extends SQLiteOpenHelper {
             return "Erro ao inserir registro";
         }
         else{
-            return "Registro Inserido com sucesso";
+            return "Motorista Inserido com sucesso";
         }
     }
-    /*public String insertUsuario(String login, String password, String nome, String endereco){
+    public String insertUsuario(String login, String password, String nome, String endereco){
+        db = this.getWritableDatabase();
         Log.e("insertUsuario", "Inicio");
         ContentValues valores;
         long resultado;
@@ -199,9 +200,10 @@ public class BancoClass extends SQLiteOpenHelper {
             return "Erro ao inserir registro";
         }
         else{
-            return "Registro Inserido com sucesso";
+            return "Usuário Inserido com sucesso";
         }
-    }*/
+    }
+
     public Cursor selectLogin(String type){
 
         Cursor cursor;

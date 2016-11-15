@@ -109,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
     public void onClickRegister (View view){
-
+        editLogin.getText().clear();
+        editPassword.getText().clear();
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
