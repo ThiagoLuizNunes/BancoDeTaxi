@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Log.e("Signal", signal.toString());
-        if(signal){
+        if(signal && (cliente.getCount() != 0)){
             Log.e("Crud", "cliente");
 
             Log.e("Crud", "cliente");
@@ -94,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
             }
+        }
+        else{
+            showMessage("Login/Senha incorretos ", "");
+            editLogin.getText().clear();
+            editPassword.getText().clear();
         }
     }
     public void showMessage(String title, String message){
