@@ -246,6 +246,31 @@ public class DataClass extends SQLiteOpenHelper {
         }
     }
 
+    public String insertChamada(String origem, String h_chamada, String h_chegada, String u_id){
+
+        db = this.getWritableDatabase();
+
+        Log.e("insertChamada", "Inicio");
+        ContentValues valores;
+        long resultado;
+
+        valores = new ContentValues();
+        valores.put(ORIGEM, origem);
+        valores.put(H_CHAMADA, h_chamada);
+        valores.put(H_CHEGADA, h_chegada);
+        valores.put(U_ID, u_id);
+        Log.e("insertChamada", "Insert");
+        resultado = db.insert(TABELA_CHAMADA, null, valores);
+        db.close();
+
+        if (resultado == -1){
+            return "Erro ao inserir registro";
+        }
+        else{
+            return "Chamada realizada com sucesso";
+        }
+    }
+
     public Cursor selectLogin(String type){
         Cursor cursor;
         if(type == "motorista"){

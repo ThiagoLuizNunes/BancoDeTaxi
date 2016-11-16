@@ -71,15 +71,31 @@
                     android:id="@+id/textEnd"
                     android:layout_weight="1" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/editOrigem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:hint="Origem"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+
+                </android.support.design.widget.TextInputLayout>
                 <Button
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="30dp"
                     style="?android:textAppearanceSmall"
                     android:layout_width="150dp"
                     android:layout_gravity="center"
