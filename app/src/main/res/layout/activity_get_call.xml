@@ -37,7 +37,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="Meus Dados"
+                    android:text="Informações da Corrida"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"
                     android:layout_width="wrap_content"
@@ -51,11 +51,11 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:text="Nome"
+                    android:text="Nome do cliente"
                     android:textSize="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textNomeC"
+                    android:id="@+id/textClient"
                     android:layout_weight="1" />
             </LinearLayout>
             <LinearLayout
@@ -64,22 +64,21 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:text="Endereço"
+                    android:text="Localizaçao"
                     android:textSize="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textEnd"
+                    android:id="@+id/textLocal"
                     android:layout_weight="1" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:orientation="vertical">
+
                 <Button
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="30dp"
                     style="?android:textAppearanceSmall"
                     android:layout_width="150dp"
                     android:layout_gravity="center"
@@ -87,9 +86,8 @@
                     android:background="@drawable/mybutton"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:text="fazer chamada"
-                    android:onClick="onClickCall"/>
-
+                    android:text="Cancelar Corrida"
+                    android:onClick="onClickCancel"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

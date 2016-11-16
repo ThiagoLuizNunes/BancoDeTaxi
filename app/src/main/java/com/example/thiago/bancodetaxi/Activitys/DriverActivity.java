@@ -39,4 +39,8 @@ public class DriverActivity extends AppCompatActivity {
         intent.putExtra("CPF", listDriver.get(2));
         startActivity(intent);
     }
+    public void onClickGetCall(View v){
+        Intent intent = new Intent(getApplicationContext(), GetCallActivity.class);
+        startActivity(intent);
+    }
 }

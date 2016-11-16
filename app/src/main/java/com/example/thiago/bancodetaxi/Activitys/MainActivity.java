@@ -3,6 +3,7 @@ package com.example.thiago.bancodetaxi.Activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import com.example.thiago.bancodetaxi.Class.DataClass;
 import com.example.thiago.bancodetaxi.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         editPassword = (EditText) findViewById(R.id.editPassword);
 
         crud = new DataClass(this);
-
     }
 
     public void onClickLogin(View v){
@@ -51,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
         Log.e("selectLogin", "passei");
 
         if((motorista.getCount() == 0) && cliente.getCount() == 0){
-            //show message
-            //showMessage("Erro", "nothing found");
             Toast toast = Toast.makeText(context, "Erro, nothing found", duration);
             toast.show();
             return;
@@ -66,16 +68,8 @@ public class MainActivity extends AppCompatActivity {
         do {
             String s1 = motorista.getString(1);
             String s2 = motorista.getString(2);
-            //Log.e("Login: ", s1);
-            //Log.e("Senha: ", s2);
             if((login.equals(s1)) && (password.equals(s2))){
-                //showMessage("Login ", "realizado");
                 list = new ArrayList<>();
-                /*int i;
-                for (i = 0; i<=motorista.getCount()+1; i++){
-                    list.add(motorista.getString(i+1));
-                    Log.e("Motorista"+i, list.get(i));
-                }*/
                 list.add(motorista.getString(1));
                 Log.e("Login: ", list.get(0));
                 list.add(motorista.getString(2));
@@ -95,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), DriverActivity.class);
                 intent.putExtra("listDriver", list);
                 startActivity(intent);
+                editLogin.getText().clear();
+                editPassword.getText().clear();
                 return;
             }
             if((motorista.isLast())){
@@ -103,18 +99,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }while ((motorista.moveToNext()));
 
-
         Log.e("Signal", signal.toString());
         if(signal && (cliente.getCount() != 0)){
             Log.e("Crud", "cliente");
             do {
                 String s1 = cliente.getString(1);
                 String s2 = cliente.getString(2);
-                //Log.e("Login: ", s1);
-                //Log.e("Senha: ", s2);
                 if((login.equals(s1)) && (password.equals(s2))){
-                    //showMessage("Login ", "realizado");
-
                     list = new ArrayList<>();
                     int i;
                     list.add(cliente.getString(0));
@@ -133,10 +124,11 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), ClientActivity.class);
                     intent.putExtra("listClient", list);
                     startActivity(intent);
+                    editLogin.getText().clear();
+                    editPassword.getText().clear();
                     return;
                 }
                 if((cliente.isLast())){
-                    //showMessage("Login/Senha incorretos ", "");
                     Toast toast = Toast.makeText(context, "Login/Senha incorretos", duration);
                     toast.show();
                     editLogin.getText().clear();
@@ -146,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
             }while (cliente.moveToNext());
         }
         else{
-            //showMessage("Login/Senha incorretos ", "");
             Toast toast = Toast.makeText(context, "Login/Senha incorretos", duration);
             toast.show();
             editLogin.getText().clear();

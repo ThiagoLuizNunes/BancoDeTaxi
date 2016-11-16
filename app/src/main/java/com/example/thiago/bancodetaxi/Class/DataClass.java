@@ -274,7 +274,6 @@ public class DataClass extends SQLiteOpenHelper {
     public Cursor selectLogin(String type){
         Cursor cursor;
         if(type == "motorista"){
-            String[] campos =  {LOGIN, PASSWORD, CPF, CNH, NOME, DATA};
             db = getReadableDatabase();
             //cursor = db.query(TABELA_MOTORISTA, campos, null, null, null, null,null,null);
             cursor = db.rawQuery("SELECT * FROM "+TABELA_MOTORISTA+" ", null);
@@ -285,7 +284,6 @@ public class DataClass extends SQLiteOpenHelper {
             db.close();
         }
         else{
-            String[] campos =  {LOGIN, PASSWORD};
             db = getReadableDatabase();
             //cursor = db.query(TABELA_USUARIO, campos, null, null, null, null,null,null);
             cursor = db.rawQuery("SELECT * FROM "+TABELA_USUARIO+" ", null);
@@ -295,6 +293,29 @@ public class DataClass extends SQLiteOpenHelper {
             }
             db.close();
         }
+        return cursor;
+    }
+    public Cursor selectChamada(){
+
+        Cursor cursor;
+        db = getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM "+TABELA_CHAMADA+" ORDER BY ROWID ASC LIMIT 1", null);
+        //db.rawQuery("DELETE * FROM "+TABELA_CHAMADA+" ORDER BY ROWID ASC LIMIT 1", null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+    public Cursor selectUsuario(String s){
+
+        Cursor cursor;
+        db = getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM "+TABELA_USUARIO+" WHERE "+ID+"="+s, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
         return cursor;
     }
 }

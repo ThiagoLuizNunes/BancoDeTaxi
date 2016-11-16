@@ -114,7 +114,7 @@
                     android:background="@drawable/mybutton"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:text="add carro"
+                    android:text="adicionar carro"
                     android:onClick="onClickAddCarro"/>
                 <Button
                     android:layout_marginTop="50dp"
@@ -125,7 +125,8 @@
                     android:background="@drawable/mybutton"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    android:text="get corrida"/>
+                    android:text="pegar corrida"
+                    android:onClick="onClickGetCall"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
