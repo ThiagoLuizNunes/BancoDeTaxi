@@ -17,6 +17,7 @@ public class GetCallActivity extends AppCompatActivity {
 
     private TextView textView1, textView2;
     private Cursor cursor1, cursor2;
+    private ArrayList<String> catchArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,18 @@ public class GetCallActivity extends AppCompatActivity {
         textView1 = (TextView) findViewById(R.id.textClient);
         textView2 = (TextView) findViewById(R.id.textLocal);
 
-        cursor1 = MainActivity.crud.selectChamada();
+        if(MainActivity.listCall.isEmpty()){
+            Toast toast = Toast.makeText(context, "Não há corridas no momento", duration);
+            toast.show();
+            finish();
+        }
+        else {
+            catchArray = MainActivity.listCall.getLast();
+            MainActivity.listCall.removeLast();
+            textView1.setText("Cliente: "+catchArray.get(0));
+            textView2.setText("Localização: "+catchArray.get(1));
+        }
+        /*cursor1 = MainActivity.crud.selectChamada();
         if(cursor1.getCount() == 0){
             Toast toast = Toast.makeText(context, "Não há corridas no momento", duration);
             toast.show();
@@ -38,12 +50,11 @@ public class GetCallActivity extends AppCompatActivity {
         cursor2 = MainActivity.crud.selectUsuario(cursor1.getString(4));
 
         textView1.setText("Cliente: "+cursor2.getString(3));
-        textView2.setText("Localização: "+cursor1.getString(1));
+        textView2.setText("Localização: "+cursor1.getString(1));*/
 
     }
     public void onClickCancel(View v){
-
-        //MainActivity.crud.insertChamada(cursor1.getString(1),cursor1.getString(2),cursor1.getString(3), cursor1.getString(4));
+        MainActivity.listCall.addFirst(catchArray);
         finish();
     }
 }

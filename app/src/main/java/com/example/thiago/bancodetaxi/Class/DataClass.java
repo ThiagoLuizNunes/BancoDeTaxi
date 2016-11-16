@@ -152,7 +152,7 @@ public class DataClass extends SQLiteOpenHelper {
         Log.e("sqlChamada", "Tabela Chamada criada");
 
         //Criando Tabela Fila
-        db.execSQL("CREATE TABLE " +
+        /*db.execSQL("CREATE TABLE " +
                 TABELA_FILA + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ORIGEM + " TEXT NOT NULL," +
@@ -161,7 +161,7 @@ public class DataClass extends SQLiteOpenHelper {
                 U_ID + " TEXT NOT NULL," +
                 "FOREIGN KEY ("+U_ID+") REFERENCES "+TABELA_USUARIO+" ("+ID+"))"
         );
-        Log.e("sqlChamada", "Tabela Fila criada");
+        Log.e("sqlChamada", "Tabela Fila criada");*/
 
         //Criando Tabela Carro
         db.execSQL("CREATE TABLE " +
@@ -276,7 +276,7 @@ public class DataClass extends SQLiteOpenHelper {
         valores.put(U_ID, u_id);
         Log.e("insertChamada", "Insert");
         resultado = db.insert(TABELA_CHAMADA, null, valores);
-        db.insert(TABELA_FILA, null, valores);
+        //db.insert(TABELA_FILA, null, valores);
         db.close();
 
         if (resultado == -1){

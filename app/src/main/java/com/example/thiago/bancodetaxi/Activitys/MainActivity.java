@@ -25,6 +25,7 @@ import java.util.Queue;
 public class MainActivity extends AppCompatActivity {
 
     public static DataClass crud;
+    public static LinkedList<ArrayList> listCall = new LinkedList<>();
     private Button buttonRegister;
     private Button buttonLogin;
     private EditText editLogin, editPassword;

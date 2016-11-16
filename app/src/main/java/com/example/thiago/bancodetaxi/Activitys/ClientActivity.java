@@ -53,6 +53,15 @@ public class ClientActivity extends AppCompatActivity {
         Log.e("Hora",h_chamada);
 
         String conditon = MainActivity.crud.insertChamada(origem, h_chamada, h_chegada, u_id);
+        ArrayList<String> chamada = new ArrayList<>();
+
+        chamada.add(listClient.get(3));
+        chamada.add(origem);
+
+        Log.e("List", chamada.get(0));
+        Log.e("List", chamada.get(1));
+
+        MainActivity.listCall.addFirst(chamada);
 
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
