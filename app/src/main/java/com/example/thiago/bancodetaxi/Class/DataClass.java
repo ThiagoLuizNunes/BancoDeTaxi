@@ -138,6 +138,7 @@ public class DataClass extends SQLiteOpenHelper {
 
         Log.e("sqlCarro", "Tabela Carro criada");
 
+        //Criando Tabela Chamada
         db.execSQL("CREATE TABLE " +
                 TABELA_CHAMADA + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -148,6 +149,7 @@ public class DataClass extends SQLiteOpenHelper {
                 "FOREIGN KEY ("+U_ID+") REFERENCES "+TABELA_USUARIO+" ("+ID+"))"
         );
         Log.e("sqlChamada", "Tabela Chamada criada");
+
         //Criando Tabela Carro
         db.execSQL("CREATE TABLE " +
                 TABELA_CARROS + "(" +

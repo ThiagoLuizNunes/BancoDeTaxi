@@ -120,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
                     list.add(cliente.getString(1));
                     Log.e("Login: ", list.get(0));
                     list.add(cliente.getString(2));
-                    Log.e("Login: ", list.get(1));
+                    Log.e("Senha: ", list.get(1));
                     list.add(cliente.getString(3));
-                    Log.e("Login: ", list.get(2));
+                    Log.e("Nome: ", list.get(2));
                     list.add(cliente.getString(4));
-                    Log.e("Login: ", list.get(3));
+                    Log.e("Endereço: ", list.get(3));
 
                     Toast toast = Toast.makeText(context, "Login realizado", duration);
                     toast.show();
-                    Intent intent = new Intent(this, ClientActivity.class);
-                    intent.putExtra("dadosCliente", list);
+                    Intent intent = new Intent(getApplicationContext(), ClientActivity.class);
+                    intent.putExtra("listClient", list);
                     startActivity(intent);
                     return;
                 }

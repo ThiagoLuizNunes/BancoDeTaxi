@@ -18,7 +18,8 @@
         <activity android:name=".Activitys.RegisterActivity" />
         <activity android:name=".Activitys.DriverActivity" />
         <activity android:name=".Activitys.ClientActivity" />
-        <activity android:name=".Activitys.CarActivity"></activity>
+        <activity android:name=".Activitys.CarActivity" />
+        <activity android:name=".CallActivity"></activity>
     </application>
 
 </manifest>
