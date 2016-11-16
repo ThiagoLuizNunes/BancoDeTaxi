@@ -23,6 +23,7 @@ public class DataClass extends SQLiteOpenHelper {
     //Nome das tabelas do banco
     protected static final String TABELA_CARROS = "carros";
     protected static final String TABELA_CHAMADA = "chamada";
+    protected static final String TABELA_FILA = "fila";
     protected static final String TABELA_CORRIDA = "corrida";
     protected static final String TABELA_CORRIDA_DESEMBARQUE = "corrida_desembarque";
     protected static final String TABELA_CORRIDA_EMBARQUE = "corrida_embarque";
@@ -150,6 +151,18 @@ public class DataClass extends SQLiteOpenHelper {
         );
         Log.e("sqlChamada", "Tabela Chamada criada");
 
+        //Criando Tabela Fila
+        db.execSQL("CREATE TABLE " +
+                TABELA_FILA + "(" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                ORIGEM + " TEXT NOT NULL," +
+                H_CHAMADA + " TEXT NOT NULL," +
+                H_CHEGADA + " TEXT NOT NULL," +
+                U_ID + " TEXT NOT NULL," +
+                "FOREIGN KEY ("+U_ID+") REFERENCES "+TABELA_USUARIO+" ("+ID+"))"
+        );
+        Log.e("sqlChamada", "Tabela Fila criada");
+
         //Criando Tabela Carro
         db.execSQL("CREATE TABLE " +
                 TABELA_CARROS + "(" +
@@ -167,6 +180,8 @@ public class DataClass extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_MOTORISTA);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_CARROS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_CHAMADA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_FILA);
     }
 
     public String insertMotorista(String login, String password, String cpf, String cnh, String nome,String data_adm){
@@ -261,6 +276,7 @@ public class DataClass extends SQLiteOpenHelper {
         valores.put(U_ID, u_id);
         Log.e("insertChamada", "Insert");
         resultado = db.insert(TABELA_CHAMADA, null, valores);
+        db.insert(TABELA_FILA, null, valores);
         db.close();
 
         if (resultado == -1){
@@ -300,7 +316,7 @@ public class DataClass extends SQLiteOpenHelper {
         Cursor cursor;
         db = getReadableDatabase();
         cursor = db.rawQuery("SELECT * FROM "+TABELA_CHAMADA+" ORDER BY ROWID ASC LIMIT 1", null);
-        //db.rawQuery("DELETE * FROM "+TABELA_CHAMADA+" ORDER BY ROWID ASC LIMIT 1", null);
+        //db.delete(TABELA_FILA, ID + "= " + 1 ,null);//
         if(cursor!=null){
             cursor.moveToFirst();
         }
