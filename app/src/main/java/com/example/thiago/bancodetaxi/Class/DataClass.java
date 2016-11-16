@@ -136,16 +136,6 @@ public class DataClass extends SQLiteOpenHelper {
         );
         Log.e("sqlMotorista", "Tabela Motorista criada");
 
-        //Criando Tabela Carro
-        db.execSQL("CREATE TABLE " +
-                TABELA_CARROS + "(" +
-                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                PLACA + " TEXT NOT NULL," +
-                MARCA + " TEXT NOT NULL," +
-                ANO + " TEXT NOT NULL," +
-                M_CPF + " TEXT NOT NULL," +
-                "FOREIGN KEY ("+M_CPF+") REFERENCES "+TABELA_MOTORISTA+" ("+CPF+"))"
-        );
         Log.e("sqlCarro", "Tabela Carro criada");
 
         db.execSQL("CREATE TABLE " +
@@ -158,6 +148,16 @@ public class DataClass extends SQLiteOpenHelper {
                 "FOREIGN KEY ("+U_ID+") REFERENCES "+TABELA_USUARIO+" ("+ID+"))"
         );
         Log.e("sqlChamada", "Tabela Chamada criada");
+        //Criando Tabela Carro
+        db.execSQL("CREATE TABLE " +
+                TABELA_CARROS + "(" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                PLACA + " TEXT NOT NULL," +
+                MARCA + " TEXT NOT NULL," +
+                ANO + " TEXT NOT NULL," +
+                M_CPF + " TEXT NOT NULL," +
+                "FOREIGN KEY ("+M_CPF+") REFERENCES "+TABELA_MOTORISTA+" ("+CPF+"))"
+        );
     }
 
     @Override
@@ -168,6 +168,7 @@ public class DataClass extends SQLiteOpenHelper {
     }
 
     public String insertMotorista(String login, String password, String cpf, String cnh, String nome,String data_adm){
+
         db = this.getWritableDatabase();
 
         Log.e("insertMotorista", "Inicio");
@@ -194,6 +195,7 @@ public class DataClass extends SQLiteOpenHelper {
         }
     }
     public String insertUsuario(String login, String password, String nome, String endereco){
+
         db = this.getWritableDatabase();
 
         Log.e("insertUsuario", "Inicio");
@@ -218,6 +220,7 @@ public class DataClass extends SQLiteOpenHelper {
     }
 
     public String insertCarro(String placa, String marca, String ano, String m_cpf){
+
         db = this.getWritableDatabase();
 
         Log.e("insertCarro", "Inicio");

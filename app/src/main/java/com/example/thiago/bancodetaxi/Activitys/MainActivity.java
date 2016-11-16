@@ -61,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
         String password = editPassword.getText().toString();
         Log.e("EditText: ", login);
         Log.e("EditText: ", password);
+        Log.e("Cursor moto: ", motorista.getString(0));
 
-        while (motorista.moveToNext()){
+        do {
             String s1 = motorista.getString(1);
             String s2 = motorista.getString(2);
             //Log.e("Login: ", s1);
@@ -100,11 +101,13 @@ public class MainActivity extends AppCompatActivity {
                 signal = true;
                 continue;
             }
-        }
+        }while ((motorista.moveToNext()));
+
+
         Log.e("Signal", signal.toString());
         if(signal && (cliente.getCount() != 0)){
             Log.e("Crud", "cliente");
-            while (cliente.moveToNext()){
+            do {
                 String s1 = cliente.getString(1);
                 String s2 = cliente.getString(2);
                 //Log.e("Login: ", s1);
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                     editPassword.getText().clear();
                     return;
                 }
-            }
+            }while (cliente.moveToNext());
         }
         else{
             //showMessage("Login/Senha incorretos ", "");
