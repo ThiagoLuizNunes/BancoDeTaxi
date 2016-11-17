@@ -56,7 +56,7 @@ public class DriverActivity extends AppCompatActivity {
     }
     public void onClickAddCarro(View v){
         Intent intent = new Intent(getApplicationContext(), CarActivity.class);
-        intent.putExtra("CPF", listDriver.get(2));
+        intent.putExtra("CPF", cursor.getString(3));
         startActivity(intent);
     }
     public void onClickGetCall(View v){
