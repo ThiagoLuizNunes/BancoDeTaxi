@@ -64,31 +64,23 @@ public class MainActivity extends AppCompatActivity {
         String password = editPassword.getText().toString();
         Log.e("EditText: ", login);
         Log.e("EditText: ", password);
-        Log.e("Cursor moto: ", motorista.getString(0));
-
         do {
             String s1 = motorista.getString(1);
             String s2 = motorista.getString(2);
             if((login.equals(s1)) && (password.equals(s2))){
                 list = new ArrayList<>();
-                list.add(motorista.getString(1));
-                Log.e("Login: ", list.get(0));
-                list.add(motorista.getString(2));
-                Log.e("Senha: ", list.get(1));
-                list.add(motorista.getString(3));
-                Log.e("CPF: ", list.get(2));
-                list.add(motorista.getString(4));
-                Log.e("CNH: ", list.get(3));
-                list.add(motorista.getString(5));
-                Log.e("Nome: ", list.get(4));
-                list.add(motorista.getString(6));
-                Log.e("Data: ", list.get(5));
+
+                String id = motorista.getString(0);
+                for(int i=0; i<=6; i++){
+                    list.add(motorista.getString(i));
+                    Log.e("Motorista: ", list.get(i));
+                }
 
                 Toast toast = Toast.makeText(context, "Login realizado", duration);
                 toast.show();
 
                 Intent intent = new Intent(getApplicationContext(), DriverActivity.class);
-                intent.putExtra("listDriver", list);
+                intent.putExtra("ID",id);
                 startActivity(intent);
                 editLogin.getText().clear();
                 editPassword.getText().clear();
@@ -108,8 +100,12 @@ public class MainActivity extends AppCompatActivity {
                 String s2 = cliente.getString(2);
                 if((login.equals(s1)) && (password.equals(s2))){
                     list = new ArrayList<>();
-                    int i;
-                    list.add(cliente.getString(0));
+                    String id = cliente.getString(0);
+                    for (int i=0; i<=4; i++){
+                        list.add(cliente.getString(i));
+                        Log.e("Cliente: ", list.get(i));
+                    }
+                    /*list.add(cliente.getString(0));
                     Log.e("ID: ", list.get(0));
                     list.add(cliente.getString(1));
                     Log.e("Login: ", list.get(1));
@@ -118,12 +114,13 @@ public class MainActivity extends AppCompatActivity {
                     list.add(cliente.getString(3));
                     Log.e("Nome: ", list.get(3));
                     list.add(cliente.getString(4));
-                    Log.e("Endereço: ", list.get(4));
+                    Log.e("Endereço: ", list.get(4));*/
 
                     Toast toast = Toast.makeText(context, "Login realizado", duration);
                     toast.show();
                     Intent intent = new Intent(getApplicationContext(), ClientActivity.class);
-                    intent.putExtra("listClient", list);
+                    //intent.putExtra("listClient", list);
+                    intent.putExtra("ID",id);
                     startActivity(intent);
                     editLogin.getText().clear();
                     editPassword.getText().clear();

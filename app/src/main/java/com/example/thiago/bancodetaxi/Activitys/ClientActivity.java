@@ -1,6 +1,7 @@
 package com.example.thiago.bancodetaxi.Activitys;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,20 +24,25 @@ public class ClientActivity extends AppCompatActivity {
     private ArrayList<String> listClient;
     private TextView textView1,textView2;
     private EditText editOrigem;
+    private Cursor cursor;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
 
-        listClient = (ArrayList) getIntent().getSerializableExtra("listClient");
+        //listClient = (ArrayList) getIntent().getSerializableExtra("listClient");
+        id = getIntent().getStringExtra("ID");
+
+        cursor = MainActivity.crud.selectUsuario(id);
 
         textView1 = (TextView) findViewById(R.id.textNomeC);
         textView2 = (TextView) findViewById(R.id.textEnd);
         editOrigem = (EditText) findViewById(R.id.editOrigem);
 
-        textView1.setText("Nome: "+listClient.get(3));
-        textView2.setText("Endereço: "+listClient.get(4));
+        textView1.setText("Nome: "+cursor.getString(3));
+        textView2.setText("Endereço: "+cursor.getString(4));
     }
 
     public void onClickCall(View v){
@@ -48,14 +54,14 @@ public class ClientActivity extends AppCompatActivity {
         String origem = editOrigem.getText().toString();
         String h_chamada = date.format(currentLocalTime);
         String h_chegada = date.format(currentLocalTime);
-        String u_id = listClient.get(0); //Chamada realizada com sucesso
+        String u_id = cursor.getString(0); //Chamada realizada com sucesso
 
         Log.e("Hora",h_chamada);
 
         String conditon = MainActivity.crud.insertChamada(origem, h_chamada, h_chegada, u_id);
         ArrayList<String> chamada = new ArrayList<>();
 
-        chamada.add(listClient.get(3));
+        chamada.add(cursor.getString(3));
         chamada.add(origem);
 
         Log.e("List", chamada.get(0));
@@ -75,6 +81,5 @@ public class ClientActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, conditon, duration);
             toast.show();
         }
-
     }
 }

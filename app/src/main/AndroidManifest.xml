@@ -22,7 +22,8 @@
         <activity android:name=".Activitys.DriverActivity" />
         <activity android:name=".Activitys.ClientActivity" />
         <activity android:name=".Activitys.CarActivity" />
-        <activity android:name=".Activitys.GetCallActivity"></activity>
+        <activity android:name=".Activitys.GetCallActivity" />
+        <activity android:name=".EditActivity"></activity>
     </application>
 
 </manifest>

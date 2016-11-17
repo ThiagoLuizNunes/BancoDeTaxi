@@ -11,6 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Thiago on 11/11/2016.
  */
@@ -184,6 +186,9 @@ public class DataClass extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_FILA);
     }
 
+    /*<<<<<<<<<<<<      QUERYS INSERT       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERYS INSERT       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERYS INSERT       >>>>>>>>>>>>*/
     public String insertMotorista(String login, String password, String cpf, String cnh, String nome,String data_adm){
 
         db = this.getWritableDatabase();
@@ -286,7 +291,9 @@ public class DataClass extends SQLiteOpenHelper {
             return "Chamada realizada com sucesso";
         }
     }
-
+    /*<<<<<<<<<<<<      QUERYS SELECT       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERYS SELECT       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERYS SELECT       >>>>>>>>>>>>*/
     public Cursor selectLogin(String type){
         Cursor cursor;
         if(type == "motorista"){
@@ -323,6 +330,17 @@ public class DataClass extends SQLiteOpenHelper {
         db.close();
         return cursor;
     }
+    public Cursor selectMotorista(String s){
+
+        Cursor cursor;
+        db = getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM "+TABELA_MOTORISTA+" WHERE "+ID+"="+s, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
     public Cursor selectUsuario(String s){
 
         Cursor cursor;
@@ -333,6 +351,43 @@ public class DataClass extends SQLiteOpenHelper {
         }
         db.close();
         return cursor;
+    }
+    /*<<<<<<<<<<<<      QUERYS UPDATE       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERYS UPDATE       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERYS UPDATE       >>>>>>>>>>>>*/
+    public String updateMotorista(ArrayList<String> arrayEdit, String id){
+
+        db = this.getWritableDatabase();
+        Cursor cursor;
+        Log.e("updateMotorista", "Inicio");
+        ContentValues valores;
+        long resultado;
+        valores = new ContentValues();
+        valores.put(NOME, arrayEdit.get(0));
+        valores.put(CPF, arrayEdit.get(1));
+        valores.put(CNH, arrayEdit.get(2));
+        valores.put(DATA_ADMIN, arrayEdit.get(3));
+        Log.e("updateMotorista", "Update");
+        resultado = db.update(TABELA_MOTORISTA, valores, ID+"="+id, null);
+
+        /*String query = "UPDATE "+TABELA_MOTORISTA+" " +
+                "SET "+NOME+"="+arrayEdit.get(0)+" " +
+                "SET "+CPF+"="+arrayEdit.get(1)+" " +
+                "SET "+CNH+"="+arrayEdit.get(2)+" " +
+                "SET "+DATA_ADMIN+"="+arrayEdit.get(3)+" " +
+                "WHERE "+ID+"="+id;*/
+        //cursor = db.rawQuery("UPDATE motorista SET cpf='editado' WHERE id=1", null);
+        //cursor.moveToFirst();
+        //db.rawQuery(query, null);
+        db.close();
+
+        if (resultado == -1){
+            return "Erro ao editar dados";
+        }
+        else{
+            return "Dados editados com sucesso";
+        }
+        //return "Dados editados com sucesso";
     }
 }
 

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class GetCallActivity extends AppCompatActivity {
 
     private TextView textView1, textView2;
-    private Cursor cursor1, cursor2;
     private ArrayList<String> catchArray;
 
     @Override
@@ -41,17 +40,6 @@ public class GetCallActivity extends AppCompatActivity {
             textView1.setText("Cliente: "+catchArray.get(0));
             textView2.setText("Localização: "+catchArray.get(1));
         }
-        /*cursor1 = MainActivity.crud.selectChamada();
-        if(cursor1.getCount() == 0){
-            Toast toast = Toast.makeText(context, "Não há corridas no momento", duration);
-            toast.show();
-            finish();
-        }
-        cursor2 = MainActivity.crud.selectUsuario(cursor1.getString(4));
-
-        textView1.setText("Cliente: "+cursor2.getString(3));
-        textView2.setText("Localização: "+cursor1.getString(1));*/
-
     }
     public void onClickCancel(View v){
         MainActivity.listCall.addFirst(catchArray);
