@@ -23,7 +23,7 @@
         <activity android:name=".Activitys.ClientActivity" />
         <activity android:name=".Activitys.CarActivity" />
         <activity android:name=".Activitys.GetCallActivity" />
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".Activitys.EditActivity"></activity>
     </application>
 
 </manifest>

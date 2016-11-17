@@ -2,15 +2,12 @@ package com.example.thiago.bancodetaxi.Activitys;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.thiago.bancodetaxi.EditActivity;
 import com.example.thiago.bancodetaxi.R;
 
 import java.util.ArrayList;

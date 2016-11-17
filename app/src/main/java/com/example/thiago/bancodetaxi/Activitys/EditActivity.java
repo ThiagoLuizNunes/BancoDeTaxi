@@ -1,4 +1,4 @@
-package com.example.thiago.bancodetaxi;
+package com.example.thiago.bancodetaxi.Activitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.thiago.bancodetaxi.Activitys.DriverActivity;
 import com.example.thiago.bancodetaxi.Activitys.MainActivity;
+import com.example.thiago.bancodetaxi.R;
 
 import java.util.ArrayList;
 

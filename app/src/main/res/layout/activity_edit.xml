@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="@drawable/background"
-    tools:context="com.example.thiago.bancodetaxi.EditActivity">
+    tools:context="com.example.thiago.bancodetaxi.Activitys.EditActivity">
 
     <ProgressBar
         android:id="@+id/login_progress"
