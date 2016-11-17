@@ -55,15 +55,27 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("selectLogin", "passei");
 
+        String login = editLogin.getText().toString();
+        String password = editPassword.getText().toString();
+
+        if((login.equals("adm")) && (password.equals("123"))){
+
+            Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+            startActivity(intent);
+            editLogin.getText().clear();
+            editPassword.getText().clear();
+
+            return;
+        }
         if((motorista.getCount() == 0) && cliente.getCount() == 0){
             Toast toast = Toast.makeText(context, "Erro, nothing found", duration);
             toast.show();
             return;
         }
-        String login = editLogin.getText().toString();
-        String password = editPassword.getText().toString();
         Log.e("EditText: ", login);
         Log.e("EditText: ", password);
+
+
         do {
             String s1 = motorista.getString(1);
             String s2 = motorista.getString(2);
@@ -105,21 +117,9 @@ public class MainActivity extends AppCompatActivity {
                         list.add(cliente.getString(i));
                         Log.e("Cliente: ", list.get(i));
                     }
-                    /*list.add(cliente.getString(0));
-                    Log.e("ID: ", list.get(0));
-                    list.add(cliente.getString(1));
-                    Log.e("Login: ", list.get(1));
-                    list.add(cliente.getString(2));
-                    Log.e("Senha: ", list.get(2));
-                    list.add(cliente.getString(3));
-                    Log.e("Nome: ", list.get(3));
-                    list.add(cliente.getString(4));
-                    Log.e("Endereço: ", list.get(4));*/
-
                     Toast toast = Toast.makeText(context, "Login realizado", duration);
                     toast.show();
                     Intent intent = new Intent(getApplicationContext(), ClientActivity.class);
-                    //intent.putExtra("listClient", list);
                     intent.putExtra("ID",id);
                     startActivity(intent);
                     editLogin.getText().clear();

@@ -153,18 +153,6 @@ public class DataClass extends SQLiteOpenHelper {
         );
         Log.e("sqlChamada", "Tabela Chamada criada");
 
-        //Criando Tabela Fila
-        /*db.execSQL("CREATE TABLE " +
-                TABELA_FILA + "(" +
-                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                ORIGEM + " TEXT NOT NULL," +
-                H_CHAMADA + " TEXT NOT NULL," +
-                H_CHEGADA + " TEXT NOT NULL," +
-                U_ID + " TEXT NOT NULL," +
-                "FOREIGN KEY ("+U_ID+") REFERENCES "+TABELA_USUARIO+" ("+ID+"))"
-        );
-        Log.e("sqlChamada", "Tabela Fila criada");*/
-
         //Criando Tabela Carro
         db.execSQL("CREATE TABLE " +
                 TABELA_CARROS + "(" +
@@ -388,6 +376,16 @@ public class DataClass extends SQLiteOpenHelper {
             return "Dados editados com sucesso";
         }
         //return "Dados editados com sucesso";
+    }
+
+    /*<<<<<<<<<<<<      QUERY DELETE       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERY DELETE       >>>>>>>>>>>>*/
+    /*<<<<<<<<<<<<      QUERY DELETE       >>>>>>>>>>>>*/
+    public void deleteTable(String table){
+
+        db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM "+ table);
+        db.close();
     }
 }
 
