@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class GetCallActivity extends AppCompatActivity {
 
-    private TextView textView1, textView2;
+    private TextView textView1, textView2, textView3;
     private ArrayList<String> catchArray;
 
     @Override
@@ -28,6 +28,7 @@ public class GetCallActivity extends AppCompatActivity {
 
         textView1 = (TextView) findViewById(R.id.textClient);
         textView2 = (TextView) findViewById(R.id.textLocal);
+        textView3 = (TextView) findViewById(R.id.textHChamada);
 
         if(MainActivity.listCall.isEmpty()){
             Toast toast = Toast.makeText(context, "Não há corridas no momento", duration);
@@ -39,6 +40,7 @@ public class GetCallActivity extends AppCompatActivity {
             MainActivity.listCall.removeLast();
             textView1.setText("Cliente: "+catchArray.get(0));
             textView2.setText("Localização: "+catchArray.get(1));
+            textView3.setText("Hora chamada: "+catchArray.get(2));
         }
     }
     public void onClickCancel(View v){

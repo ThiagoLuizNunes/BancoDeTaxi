@@ -63,6 +63,7 @@ public class ClientActivity extends AppCompatActivity {
 
         chamada.add(cursor.getString(3));
         chamada.add(origem);
+        chamada.add(h_chamada);
 
         Log.e("List", chamada.get(0));
         Log.e("List", chamada.get(1));
