@@ -99,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 if((motorista.isLast())){
-                    signal = true;
+                    //signal = true;
                     continue;
                 }
             }while ((motorista.moveToNext()));
         }
 
         Log.e("Signal", signal.toString());
-        if(signal && (cliente.getCount() != 0)){
+        if(/*signal && */(cliente.getCount() != 0)){
             Log.e("Crud", "cliente");
             do {
                 String s1 = cliente.getString(1);
