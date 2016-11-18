@@ -75,34 +75,35 @@ public class MainActivity extends AppCompatActivity {
         Log.e("EditText: ", login);
         Log.e("EditText: ", password);
 
+        if(motorista.getCount() != 0){
+            do {
+                String s1 = motorista.getString(1);
+                String s2 = motorista.getString(2);
+                if((login.equals(s1)) && (password.equals(s2))){
+                    list = new ArrayList<>();
 
-        do {
-            String s1 = motorista.getString(1);
-            String s2 = motorista.getString(2);
-            if((login.equals(s1)) && (password.equals(s2))){
-                list = new ArrayList<>();
+                    String id = motorista.getString(0);
+                    for(int i=0; i<=6; i++){
+                        list.add(motorista.getString(i));
+                        Log.e("Motorista: ", list.get(i));
+                    }
 
-                String id = motorista.getString(0);
-                for(int i=0; i<=6; i++){
-                    list.add(motorista.getString(i));
-                    Log.e("Motorista: ", list.get(i));
+                    Toast toast = Toast.makeText(context, "Login realizado", duration);
+                    toast.show();
+
+                    Intent intent = new Intent(getApplicationContext(), DriverActivity.class);
+                    intent.putExtra("ID",id);
+                    startActivity(intent);
+                    editLogin.getText().clear();
+                    editPassword.getText().clear();
+                    return;
                 }
-
-                Toast toast = Toast.makeText(context, "Login realizado", duration);
-                toast.show();
-
-                Intent intent = new Intent(getApplicationContext(), DriverActivity.class);
-                intent.putExtra("ID",id);
-                startActivity(intent);
-                editLogin.getText().clear();
-                editPassword.getText().clear();
-                return;
-            }
-            if((motorista.isLast())){
-                signal = true;
-                continue;
-            }
-        }while ((motorista.moveToNext()));
+                if((motorista.isLast())){
+                    signal = true;
+                    continue;
+                }
+            }while ((motorista.moveToNext()));
+        }
 
         Log.e("Signal", signal.toString());
         if(signal && (cliente.getCount() != 0)){
